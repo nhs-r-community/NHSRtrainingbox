@@ -2,7 +2,7 @@ Package: NHSRtraining
 Title: NHSRtraining is a learnr package which complements the Introduction to R and R Studio course
 Version: 0.0.0.9000
 Authors@R: 
-    person("Zoë", "Turner", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1033-9158"))
+    person("Zoë", "Turner", role = c("aut", "cre"), email = "cdudatascience@nottshc.nhs.uk", comment = c(ORCID = "0000-0003-1033-9158"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
