@@ -23,6 +23,16 @@ You can install the development version of NHSRtraining from
 remotes::install_github("nhs-r-community/NHSRtraining")
 ```
 
+Currently the [{parsons} package](https://github.com/rstudio/parsons) is
+not available on CRAN. This is used to create some of the interactivity
+of the quiz questions where answers can me moved from one side to
+another into order. To load this:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("rstudio/parsons")
+```
+
 ## Running the tutorials
 
 Unlike with usual packages where `library(NHSRtraining)` would be used,

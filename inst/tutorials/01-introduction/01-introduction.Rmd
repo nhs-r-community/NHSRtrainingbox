@@ -1,0 +1,103 @@
+---
+title: "NHS-R Community Introduction to R and R Studio"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: >
+  To be added later
+---
+
+
+```{r setup, include=FALSE}
+# load packages-----------------------------------------------------------------
+
+library(learnr)
+library(tidyverse)
+library(parsons)
+
+
+# set options for exercises and checking ---------------------------------------
+
+# hide non-exercise code chunks ------------------------------------------------
+tutorial_options(exercise.timelimit = 60)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction: learning learnr
+
+Explanation of what this is...
+
+### Learning goals
+
+Show you the types of exercises available in `NHSRtraining`.
+
+
+## Filling the blanks type exercise
+
+Installing packages
+
+Loading packages... replace the `___` with the package names. 
+
+You can type directly on to of `___` in the box below; if you do not know the answer, you can click `Solution`, click `Copy to Clipboard`, paste it in the box and then click `Submit Answer`.
+
+```{r library-tidyverse, exercise=TRUE}
+# install and load the tidyverse package
+install.packages(___)
+library(___)
+```
+
+Add in errors about quotation marks.
+
+```{r library-tidyverse-solution}
+# install and load the tidyverse package
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+Point about "" and '' being the same.
+
+```{r library-tidyverse-check}
+grade_code("You completed the first filling the blanks exercise.")
+```
+
+## Multiple Choice Questions
+
+In these exercises we will be presented with multiple choice questions. Some of the questions may have more than one answer - select the correct answers. 
+
+```{r mcq-quiz}
+question('Some question as an example',
+         answer("", correct = TRUE),
+         answer("", correct = TRUE),
+         answer(""),
+         answer(""),
+         allow_retry = TRUE,
+         random_answer_order = TRUE,
+         incorrect = "Are you sure?",
+         correct = "Correct! Reiterate answer here"
+)
+```
+
+## Arranging the code
+
+Some code will be provided but it's jumbled up and needs to be put into order and can be done by dragging and dropping from the left to the right side.
+
+```{r explain-1, echo =FALSE}
+question_parsons(
+  initial = c(
+ "NHS-R Community!",
+    "Hello"
+  ),
+  answer(
+    c(
+    "Hello",
+    "NHS-R Community!"
+    ),
+    correct = TRUE
+  ),
+  problem_type = "base"
+)
+```
+
+
