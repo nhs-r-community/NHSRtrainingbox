@@ -1,0 +1,14 @@
+name: 00-introduce-learnr
+title: 00-introduce-learnr
+username: zoeturner
+account: zoeturner
+server: involve.nottshc.nhs.uk
+hostUrl: https://involve.nottshc.nhs.uk/rsconnect/__api__
+appId: 132
+bundleId: 4208
+url: https://involve.nottshc.nhs.uk/rsconnect/content/040d2501-0e9e-42d5-816c-2d49dc3b4fbe/
+when: 1635938470.39085
+lastSyncTime: 1635938470.39085
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: 01-introduction.html|01-introduction.Rmd

@@ -1,0 +1,181 @@
+---
+title: "NHS-R Community Introduction to R and R Studio"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+css: "css/font-size.css"
+runtime: shiny_prerendered
+description: >
+  Initial page to introduce the {learnr} style of interactive questions
+---
+
+
+```{r setup, include=FALSE}
+# load packages-----------------------------------------------------------------
+
+library(learnr)
+library(tidyverse)
+library(parsons) 
+library(gradethis)
+
+# set options for exercises and checking ---------------------------------------
+
+# tutorial options
+tutorial_options(
+  # code running in exercise times out after 30 seconds
+  exercise.timelimit = 30, 
+  # use gradethis for checking
+  exercise.checker = gradethis::grade_learnr
+  )
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<!-- Add JavaScript code for making the exercise code larger, css code is also used in the YAML -->
+<script language="JavaScript" src="js/font-size.js"></script>
+
+
+## Introducing the learning format  <a alt="NHS-R Community's logo" href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
+
+</br>
+</br>
+
+{learnr} is an interactive learning package that is used to build tutorials and is used here to introduce the following packages: {readr}, {ggplot2} and {dplyr} from the {tidyverse} package. These are packages that are covered in the NHS-R Community Introduction to R and R Studio and from which the exercises here are based upon.
+
+### Learning goals
+
+The goal of this section is to familiarise yourself with the styles of the questions. There are right or wrong answers but you are encouraged to select and write the wrong answer to see what happens!
+
+Also try the `Start Over` link which appears under the contents under the progress menu on the left. This restarts the series of exercises. As you go through the sections a black line will appear to the left of the contents menu and you may find that, even if you shut everything down and return to the questions later, it remembers how far you got previously.
+
+If you want to restart just the exercise you are in, each question will have its own `Start Over` button and using that won't affect your previous answers.
+
+## Filling the blanks type exercise
+
+To fill in the blanks all of the text `___` needs to be replaced. A quick way to highlight it all is to double click in the middle of the line and then start typing. 
+
+Have a go at replacing `___` with `min` for minimum which is a wrong answer. Select `Run` to see that, although it's wrong, the code works. Then `Submit Answer` which gives feedback on your answer. 
+
+To see the message from a right answer select the `Solution` and then copy that by typing or using copy/paste into the R Code section. 
+
+To close the `Solution` click on the button again.
+
+```{r average, exercise = TRUE}
+
+____(1:10)
+
+```
+
+```{r average-solution}
+
+mean(1:10)
+
+```
+
+```{r average-check}
+
+gradethis::grade_this({
+  if (identical(.result, mean(1:10))) {
+    pass("Well done for finding the Solution!")
+  }
+  fail("To find the solution click on the Solution button and see what was needed.")
+})
+
+```
+
+### Hints
+
+Some questions will use `Hint` rather than `Solution`. Select the `Hint` button for clues on what to replace `___` with in this code.
+
+To close the `Hints` click on the button again.
+
+```{r sum, exercise = TRUE}
+
+# The function has 3 letters and is 'adding up' the numbers. Check the hints for more clues.
+
+____(1:10)
+
+```
+
+```{r sum-hint-1}
+
+# Here is the first letter in the function name. 
+
+s__(1:10)
+
+```
+
+```{r sum-hint-2}
+
+# You might be able to guess it now, but the next 'hint' is the solution.
+
+su_(1:10)
+
+```
+
+```{r sum-solution}
+
+# Here is the full solution!
+
+sum(1:10)
+
+```
+
+```{r sum-check}
+
+gradethis::grade_this({
+  if (identical(.result, sum(1:10))) {
+    pass("Well done! Hints may not always reset when Start Over is selected. A full Start Over may be needed.")
+  }
+  fail("There are two hints and a solution - select the Hint button to view")
+})
+
+```
+
+## Multiple Choice Questions
+
+In these exercises we will be presented with multiple choice questions. Some of the questions may have more than one answer - select the correct answers. 
+
+```{r mcq-quiz}
+quiz(
+  question("Which of the following can R be used for?",
+    answer("Cleaning data", correct = TRUE),
+    answer("Making tea", message = "Making tea: R does lots of things and is fabulous but it makes terrible tea!"),
+    answer("Visualising data", correct = TRUE),
+    answer("Reports", correct = TRUE),
+    incorrect = "Not all the correct uses were ticked. Have another go.",
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  )
+)
+```
+
+## Arranging the code
+
+Some code will be provided but it's jumbled up and needs to be put into order and can be done by dragging and dropping from the left to the right side.
+
+There is no `Hint` or `Solution` button for this type of exercise but a wrong attempt will give a message to help. Try this in the wrong order first.
+
+```{r explain-1, echo =FALSE}
+question_parsons(
+  initial = c(
+ "NHS-R Community!",
+    "Hello"
+  ),
+  answer(
+    c(
+    "Hello",
+    "NHS-R Community!"
+    ),
+    correct = TRUE
+  ),
+ submit_button = "Give feedback",
+ allow_retry = TRUE,
+ correct = "This is quite fun isn't it!",
+ incorrect = "Try again with a different order.",
+ problem_type = "base"
+)
+
+```
+
