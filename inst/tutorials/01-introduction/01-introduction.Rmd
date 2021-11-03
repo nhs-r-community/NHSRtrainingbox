@@ -4,9 +4,10 @@ output:
   learnr::tutorial:
     progressive: true
     allow_skip: true
+css: "css/font-size.css"
 runtime: shiny_prerendered
 description: >
-  To be added later
+  Initial page to introduce the {learnr} style of interactive questions
 ---
 
 
@@ -15,89 +16,349 @@ description: >
 
 library(learnr)
 library(tidyverse)
-library(parsons)
-
+library(parsons) 
+library(gradethis)
 
 # set options for exercises and checking ---------------------------------------
 
-# hide non-exercise code chunks ------------------------------------------------
-tutorial_options(exercise.timelimit = 60)
+# tutorial options
+tutorial_options(
+  # code running in exercise times out after 30 seconds
+  exercise.timelimit = 30, 
+  # use gradethis for checking
+  exercise.checker = gradethis::grade_learnr
+  )
+
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Introduction: learning learnr
+<!-- Add JavaScript code for making the exercise code larger, css code is also used in the YAML -->
+<script language="JavaScript" src="js/font-size.js"></script>
 
-Explanation of what this is...
+
+## Introduction to R and R Studio  <a alt="NHS-R Community's logo" href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
+
+</br>
+</br>
+
+[Slides](https://nhs-r-community.github.io/intro_r/01-workshop_intro.html#1) for the introduction course are referenced in this package for further information or to visualise RStudio with screenshots. The slides in the introduction session include links to various examples of how R is used, including Shiny apps, heat map visualisations and a Twitter dashboard. 
 
 ### Learning goals
 
-Show you the types of exercises available in `NHSRtraining`.
+The goal of this section it to introduce some important features of RStudio and whilst there is a lot more that RStudio is capable of, there are often updated versions with new and useful features, the following should get you started. [Presentation slide 22](https://nhs-r-community.github.io/intro_r/01-workshop_intro.html#22) onwards in this section have screenshots to help locate parts of RStudio and links to other resources or sources. The following {learnr} section can be followed without the slides.
+
+## R and R Studio
+
+The terms `R` and `RStudio` are often used interchangeably. The analogy used in the slides, taken from [ModernDive](https://moderndive.com/1-getting-started.html), is that
+
+> R is like a car's engine while RStudio is like a car's dashboard
 
 
-## Filling the blanks type exercise
-
-Installing packages
-
-Loading packages... replace the `___` with the package names. 
-
-You can type directly on to of `___` in the box below; if you do not know the answer, you can click `Solution`, click `Copy to Clipboard`, paste it in the box and then click `Submit Answer`.
-
-```{r library-tidyverse, exercise=TRUE}
-# install and load the tidyverse package
-install.packages(___)
-library(___)
+```{r rstudio-quiz}
+quiz(caption = "Recap",
+     question("R and R Studio are two separate programs but one relies upon the other to run. Given the analogy about engines, which program is needed for either R or R Studio to run?",
+              answer("R", correct = TRUE, message = "You can use `R` on its own or R Studio which can be more user friendly"),
+              answer("R Studio", message = "You can install R Studio without `R` but it needs `R` to run"),
+              allow_retry = TRUE,
+              random_answer_order = TRUE,
+              incorrect = "Hint: R was likened to the engine and RStudio a dashboard in a car"
+     )
+)
 ```
 
-Add in errors about quotation marks.
+## Console
 
-```{r library-tidyverse-solution}
-# install and load the tidyverse package
+When R Studio is first opened, it's usually 3 panels, a `Console` on the left and the right is split into 2 with various tabs. [Slide 22](https://nhs-r-community.github.io/intro_r/01-workshop_intro.html#22) of the course material has screenshots to help visualise this.
+
+If R Studio has 4 sections the `Console` default position is the bottom left of the screen with an `Editor` above it in the top left side as depicted in [Slide 24](https://nhs-r-community.github.io/intro_r/01-workshop_intro.html#24).
+
+```{r console-quiz}
+quiz(caption = "Guess",
+     question("Have a guess at what are the reasons for writing code in the `Editor`?",
+              answer("Code can be saved in scripts", correct = TRUE),
+              answer("Colour differences in text", correct = TRUE),
+              answer("Autocomplete", correct = TRUE, message = "`Autocomplete`: also works in the Console."),
+              answer("It uses less memory", message = "`It uses less memory`: Probably not, all code that is run in the Editor goes to the Console so memory use will be the same as it's the same code."),
+              allow_retry = TRUE,
+              random_answer_order = TRUE,
+              incorrect = "Hint: only one option isn't true"
+     )
+)  
+
+```
+
+## Keyboard shortcut keys
+
+__Keyboard shortcuts in this training relate to Windows machines only__
+
+R Studio has a lot of shortcut keys that can be really useful but not everyone likes using the keyboard so there is often always a corresponding action in the menu. To find the [shortcut keys](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts?__cf_chl_captcha_tk__=sGGFvfUiHaKglrNR33pw8YgN6_0NiBrmrWaKu_q2SG8-1635942843-0-gaNycGzNCCU) go to either Tools/Keyboard Shorcuts Help or use `Alt + Shift + k` (but not in an RMarkdown file as that `knits` the document!).
+
+Most shortcut keys from Microsoft work in RStudio, for example Ctrl+C for copy but only `Ctrl+Z` for undo works. Redo is slightly different, it's `Ctrl+Shift+Z`! 
+
+```{r shorcuts-quiz}
+quiz(caption = "Recap",
+     question("Can you set/create your own keyboard shortcuts in RStudio?",
+              answer("Yes", correct = TRUE, message = "Yes, that's right! By going to `Tools/Modify Shortcut Keys...`"),
+              answer("No", message = "It's a nice feature of RStudio's flexibilty where you can set it to your own preferences. Have a look at `Tools/Modify Shortcut Keys...`"),
+              allow_retry = TRUE,
+              random_answer_order = TRUE
+     )
+)
+```
+
+## Commenting code
+
+Commenting code is always recommended and, at least at first, you may want to comment a lot to remind yourself of what your thinking was for solving a puzzle or how you were using new code. There is only one comment symbol used in R which is `#` and there is a short cut to add it to lines which is the same for removing lines: `Ctrl+Shift+C`.
+
+Notice in the code below that text all changes colour when commented out. The default colour is green text.
+
+```{r comment, exercise = TRUE}
+# Try commenting out the following code
+median(1:10)
+
+```
+
+```{r comment-solution}
+# Try commenting out the following code
+# median(1:10)
+
+```
+
+```{r comment-check}
+
+grade_result(
+  pass_if(~identical(.result, NULL))
+)
+```
+
+## Changing settings 
+
+RStudio has a number of things you can set for comfort including setting the screen to a darker or coloured background, making font sizes bigger and setting the dictionary to British English. These settings can be found in the menu `Tools\Global Options...`.
+
+One thing that is recommended when you set up your RStudio is to untick the box on `Tools\Global Options...` in the `General` tab, `Workspace` section that says `Restore .RData into workspace at startup` and also to select `Never` in the section `Save workspace to .RData on exit`. This is because all objects (tables and plots for example) that you create and packages that you have run will be remembered even after closing down RStudio.
+
+```{r retained-quiz}
+quiz(caption = "Guess",
+  question("What problems could occur if packages and objects are retained even after shutting down RStudio?",
+           answer("Something may be referred to that the code used to create it has been deleted", correct = TRUE),
+           answer("Sharing my code with others may have bugs that I've not realised", correct = TRUE),
+           answer("The latest packages won't be available to my code", message = "The version of package isn't affected by being opened or left loaded between sessions."),
+           allow_retry = TRUE,
+           random_answer_order = TRUE,
+           incorrect = "Hint: only one answer is not true"
+  )
+)
+```
+
+## Refreshing the workspace
+
+If you find that there are too many objects (tables and plots for example) in the `Environment` pane and you want to remove them all there is an icon of a broom on the menu panel just under the tabs. This can also be found under the menu `Session\Clear Workspace...`.
+
+Code in the `Console` can also be cleared by using the broom icon under the tab names or keyboard short cuts `Ctrl+L`. The broom icon also is included in the `Plots` menu in the bottom right panel of RStudio.
+
+It's good practice to reset the entire session which also includes unloading any packages. To do this go to to `Session\Restart R` or use the keyboard short cuts `Ctrl+Shift+F10`.
+
+```{r refresh-quiz}
+quiz(caption = "Recap",
+     question("Which of the following areas doesn't have a broom button to clear/refresh?",
+              answer("Console"),
+              answer("Plots"),
+              answer("Environment"),
+              answer("Editor", correct = TRUE),
+              allow_retry = TRUE,
+              random_answer_order = TRUE,
+              incorrect = "Hint: the answer is the one area not mentioned in the text above.",
+              correct = "That's right! You can only close down the open scripts in `Editor` manually; there isn't a broom in that section"
+     )
+)
+```
+
+## Running code
+
+There are 3 ways to run code in RStudio, a button, a menu selection and a keyboard short cut key. For any of these options the cursor needs to be somewhere in the code you want to run. Unlike other programs you may be familiar with, not all lines of code need to be selected to run (although this is very handy if you only want to run part of the code to see if it works), and only the section you are in runs. If, for example, you have two things to run:
+
+```{r run-line-example, eval=FALSE, echo=TRUE}
+
+c("Hello", "World")
+
+c("Buenas", "Dias")
+
+```
+
+Only the line where the cursor is placed will run.
+
+The button to run code is called `Run` and can be found in the `Editor` panel. 
+
+The keyboard short cut `Ctrl+Enter` is also very useful.
+
+## Packages
+
+R packages in the [slides](https://nhs-r-community.github.io/intro_r/01-workshop_intro.html#29) are likened to apps for your phone, where you only need to install them once but load them everytime they are needed. 
+
+It's good practice to put the package names you've used at the top of your scripts so it's the first thing you or others see. 
+
+Like apps, packages can be installed from a central place called CRAN - Comprehensive R Archive Network which only requires the code `install.packages()` with the name of the package in the brackets. RStudio also has a wizard to do this in the `Packages` tab called `Install`.
+
+Packages can also be downloaded from GitHub repositories and often require another package called {devtools} or {remotes} to install and many of the GitHub repositories give the code to use. For example:
+
+```{r remotes-example, eval=FALSE, echo=TRUE}
+
+# install.packages("remotes")
+remotes::install_github("nhs-r-community/LSOApop")
+
+```
+
+The commented out first line needs to be uncommented but once you have {remotes} (or {devtools}) loaded this line is no longer needed. The next line will load the specific package. 
+
+You'll notice the use of curly brackets in this text which goes around the package name like {this}. This is only done in a text format and one suggestion as to why this is used is because many of the packages look like words, or misspelt words, when written. 
+
+#### A note for Public Sector employees
+
+Packages get loaded to your own folder on a network drive so if you share a computer with anyone, they won't have access to the same packages as you and will have to download them again. 
+
+Not all organisations allow packages to be downloaded by anywhere other than CRAN due to security. The issue with this is that many packages are in development or change too frequently to be included. 
+
+```{r install-package, exercise = TRUE}
+# The name of the package needs to be in quotations, either double or single.
+
+# Complete this code
+___("tidyverse")
+
+```
+
+```{r install-package-solution}
+# Complete this code
 install.packages("tidyverse")
+
+```
+
+```{r install-package-check}
+
+grade_result(
+  pass_if(~identical(.result, NULL))
+)
+```
+
+
+## Tidyverse
+
+In the last exercise you will have seen the code:
+
+```{r install-example, eval=FALSE, echo=TRUE}
+
+install.packages("tidyverse")
+```
+
+But what is tidyverse? It is a package but a special type of package - a package of packages. This course will cover two particular packages: {dplyr} for data manipulation and {ggplot2} for data visualisations, aided by the package {readr} to get csv data into the RStudio environment.
+
+Loading a package is slightly different to installing as the name of the package should not have quotations:
+
+```{r library-example, eval=FALSE, echo=TRUE}
+
 library(tidyverse)
 ```
 
-Point about "" and '' being the same.
+```{r install-library, exercise = TRUE}
+# Complete this code
+___(tidyverse)
 
-```{r library-tidyverse-check}
-grade_code("You completed the first filling the blanks exercise.")
+___("tidyverse")
+
 ```
 
-## Multiple Choice Questions
+```{r install-library-hint-1}
+# Where the package is to be loaded there are no quotations
+___(tidyverse)
 
-In these exercises we will be presented with multiple choice questions. Some of the questions may have more than one answer - select the correct answers. 
+# Where the package is to be installed the name is in quotations
+___("tidyverse")
 
-```{r mcq-quiz}
-question('Some question as an example',
-         answer("", correct = TRUE),
-         answer("", correct = TRUE),
-         answer(""),
-         answer(""),
-         allow_retry = TRUE,
-         random_answer_order = TRUE,
-         incorrect = "Are you sure?",
-         correct = "Correct! Reiterate answer here"
+```
+
+```{r install-library-hint-2}
+# First letters of the words to fill in
+li___(tidyverse)
+
+in___("tidyverse")
+
+```
+
+```{r install-library-solution}
+library(tidyverse)
+
+install.packages("tidyverse")
+
+```
+
+```{r install-library-check}
+
+grade_result(
+  pass_if(~identical(.result, NULL))
 )
 ```
 
-## Arranging the code
+## Package::function format
 
-Some code will be provided but it's jumbled up and needs to be put into order and can be done by dragging and dropping from the left to the right side.
+The :: (colon, colon) formatting is a useful way of explaining specifically which package a function is being used from, particularly if there is a clash between packages as there is in {tidyverse}. The [message that is loaded](https://nhs-r-community.github.io/intro_r/01-workshop_intro.html#36) the first time in a new workspace or session is not a warning or error but details what package functions could clash.
 
-```{r explain-1, echo =FALSE}
-question_parsons(
-  initial = c(
- "NHS-R Community!",
-    "Hello"
-  ),
-  answer(
-    c(
-    "Hello",
-    "NHS-R Community!"
-    ),
-    correct = TRUE
-  ),
-  problem_type = "base"
-)
+This course doesn't use the {stats} package but the message relating to conflicts is confirming that wherever {dplyr} and {stats} are both loaded, `dplyr::filter()` will be used as default. If we need `filter()` from both packages we can use the format `package::function()` to be explicit.
+
+Some code that you see from others might always use this `package::function()` format as it's good practice with things like package development. See the [RStudio Guide](https://style.tidyverse.org/index.html) for more information on style that is recommended in other areas of coding, not necessarily for package development.
+
+## Autocomplete
+
+Typing an open bracket or quotation mark in RStudio will automatically result in a closing character. This applies to:
+
+```{r eval=FALSE, echo=TRUE}
+
+# brackets
+
+()
+[]
+{}
+
+# quotes
+
+""
+'' # doesn't automatically close in RMarkdown
+
+# back ticks
+`` # doesn't automatically close in RMarkdown
+
 ```
 
 
+## Case sensitivity
+
+Whilst R is not pedantic about quotation marks, so long as they correspond with the first:
+
+```{r eval=FALSE, echo=TRUE}
+""
+
+''
+```
+
+it is, however, case sensitive so words like NHS are different to nhs or Nhs.
+
+```{r case-sensitivity, exercise = TRUE}
+# Correct this code
+
+library(Tidyverse)
+library(GGPLOT2)
+library(dplyR)
+```
+
+```{r case-sensitivity-solution}
+
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+```
+
+```{r case-sensitivity-check}
+
+grade_result(
+  pass_if(~identical(.result, NULL)),
+  incorrect = "Only the cases need changing, the spellings are correct"
+)
+```

@@ -43,6 +43,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 {learnr} is an interactive learning package that is used to build tutorials and is used here to introduce the following packages: {readr}, {ggplot2} and {dplyr} from the {tidyverse} package. These are packages that are covered in the NHS-R Community Introduction to R and R Studio and from which the exercises here are based upon.
 
+!!This won't work in Internet Explorer past this page!!
+
 ### Learning goals
 
 The goal of this section is to familiarise yourself with the styles of the questions. There are right or wrong answers but you are encouraged to select and write the wrong answer to see what happens!
