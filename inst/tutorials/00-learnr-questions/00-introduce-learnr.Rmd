@@ -77,8 +77,34 @@ mean(1:10)
 
 ```{r average-check}
 
-gradethis::grade_this({
-  if (identical(.result, mean(1:10))) {
+grade_code() 
+
+```
+
+`Start Over` and then try `median` instead of `mean`. This has the same output answer but is deemed incorrect because the code does now match.
+
+In the next section this is repeated but now, rather than looking for exact code the answer is output so try both `mean` then `median` to see what the responses are:
+
+```{r mean-median, exercise = TRUE}
+
+____(1:10)
+
+```
+
+```{r mean-median-solution}
+
+mean(1:10)
+
+# or
+
+median(1:10)
+
+```
+
+```{r mean-median-check}
+
+grade_this({
+  if (identical(.result, .solution)) {
     pass("Well done for finding the Solution!")
   }
   fail("To find the solution click on the Solution button and see what was needed.")
