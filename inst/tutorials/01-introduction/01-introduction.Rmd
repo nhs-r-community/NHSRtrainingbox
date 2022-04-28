@@ -7,7 +7,7 @@ output:
 css: "css/font-size.css"
 runtime: shiny_prerendered
 description: >
-  Initial page to introduce the {learnr} style of interactive questions
+  Section 01 introduction
 ---
 
 
@@ -113,22 +113,25 @@ Commenting code is always recommended and, at least at first, you may want to co
 Notice in the code below that text all changes colour when commented out. The default colour is green text.
 
 ```{r comment, exercise = TRUE}
-# Try commenting out the following code
-median(1:10)
-
+# Try commenting out the median code (the shortcut won't work in this panel)
+median(1:10) + 
+  mean(1:10)
 ```
 
 ```{r comment-solution}
-# Try commenting out the following code
-# median(1:10)
-
+# Try commenting out the code for median
+# median(1:10) + 
+  mean(1:10)
 ```
 
 ```{r comment-check}
 
-grade_result(
-  pass_if(~identical(.result, NULL))
-)
+grade_this({
+  if (identical(.result, mean(1:10))) {
+    pass("Great work! You commented out the median() code so only the mean() ran")
+  }
+  fail("Hint! You need to comment out the median() code so only the mean() runs")
+})
 ```
 
 ## Changing settings 
@@ -175,7 +178,7 @@ quiz(caption = "Recap",
 
 ## Running code
 
-There are 3 ways to run code in RStudio, a button, a menu selection and a keyboard short cut key. For any of these options the cursor needs to be somewhere in the code you want to run. Unlike other programs you may be familiar with, not all lines of code need to be selected to run (although this is very handy if you only want to run part of the code to see if it works), and only the section you are in runs. If, for example, you have two things to run:
+There are 3 ways to run code in RStudio, a button, a menu selection and a keyboard short cut key. For any of these options the cursor needs to be somewhere in the code you want to run. Unlike other programs you may be familiar with, not all lines of code need to be selected to run (although this is very handy if you only want to run part of the code to see if it works). If, for example, you have two things to run:
 
 ```{r run-line-example, eval=FALSE, echo=TRUE}
 
@@ -199,7 +202,7 @@ It's good practice to put the package names you've used at the top of your scrip
 
 Like apps, packages can be installed from a central place called CRAN - Comprehensive R Archive Network which only requires the code `install.packages()` with the name of the package in the brackets. RStudio also has a wizard to do this in the `Packages` tab called `Install`.
 
-Packages can also be downloaded from GitHub repositories and often require another package called {devtools} or {remotes} to install and many of the GitHub repositories give the code to use. For example:
+Packages can also be downloaded from GitHub repositories and often require another package called {devtools} or {remotes} to install and many of the GitHub READMEs give the code to use. For example:
 
 ```{r remotes-example, eval=FALSE, echo=TRUE}
 
@@ -208,7 +211,7 @@ remotes::install_github("nhs-r-community/LSOApop")
 
 ```
 
-The commented out first line needs to be uncommented but once you have {remotes} (or {devtools}) loaded this line is no longer needed. The next line will load the specific package. 
+The commented out first line needs to be uncommented but once you have {remotes}/{devtools} loaded this line is no longer needed.  
 
 You'll notice the use of curly brackets in this text which goes around the package name like {this}. This is only done in a text format and one suggestion as to why this is used is because many of the packages look like words, or misspelt words, when written. 
 
@@ -216,7 +219,7 @@ You'll notice the use of curly brackets in this text which goes around the packa
 
 Packages get loaded to your own folder on a network drive so if you share a computer with anyone, they won't have access to the same packages as you and will have to download them again. 
 
-Not all organisations allow packages to be downloaded by anywhere other than CRAN due to security. The issue with this is that many packages are in development or change too frequently to be included. 
+Not all organisations allow packages to be downloaded by anywhere other than CRAN due to security. The issue with this is that many useful packages are in development or change too frequently to be included. Some packages are also hosted on rOpenSci like UKHSA's {fingertipR} which are only available through GitHub.
 
 ```{r install-package, exercise = TRUE}
 # The name of the package needs to be in quotations, either double or single.
@@ -234,9 +237,7 @@ install.packages("tidyverse")
 
 ```{r install-package-check}
 
-grade_result(
-  pass_if(~identical(.result, NULL))
-)
+grade_this_code()
 ```
 
 
@@ -259,9 +260,10 @@ library(tidyverse)
 ```
 
 ```{r install-library, exercise = TRUE}
-# Complete this code
+# Complete this code. Note this doesn't have quotations
 ___(tidyverse)
 
+# But this does...
 ___("tidyverse")
 
 ```
@@ -292,9 +294,7 @@ install.packages("tidyverse")
 
 ```{r install-library-check}
 
-grade_result(
-  pass_if(~identical(.result, NULL))
-)
+grade_this_code()
 ```
 
 ## Package::function format
@@ -338,7 +338,26 @@ Whilst R is not pedantic about quotation marks, so long as they correspond with 
 ''
 ```
 
-it is, however, case sensitive so words like NHS are different to nhs or Nhs.
+```{r quotations, exercise = TRUE}
+# Put quotations around the appropriate word. Try double clicking on the word and typing the opening quotation.
+
+install.packages(tidyverse)
+```
+
+```{r quotations-solution}
+
+install.packages("tidyverse")
+```
+
+
+```{r quotations-check}
+
+grade_this_code()
+
+```
+
+
+It is, however, case sensitive so words like NHS are different to nhs or Nhs.
 
 ```{r case-sensitivity, exercise = TRUE}
 # Correct this code
@@ -353,12 +372,17 @@ library(dplyR)
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
+
 ```
 
 ```{r case-sensitivity-check}
 
-grade_result(
-  pass_if(~identical(.result, NULL)),
-  incorrect = "Only the cases need changing, the spellings are correct"
-)
+# grade_this_code()
+grade_this({
+  if (identical(.result, .solution)) {
+    pass("Great work! You removed all the uppercase letters from the package names")
+  }
+})
+
+
 ```
