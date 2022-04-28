@@ -1,0 +1,93 @@
+---
+title: "NHS-R Community Introduction to R and R Studio"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+css: "css/font-size.css"
+runtime: shiny_prerendered
+description: >
+  Section 02 projects
+---
+
+
+```{r setup, include=FALSE}
+# load packages-----------------------------------------------------------------
+
+library(learnr)
+library(tidyverse)
+library(parsons) 
+library(gradethis)
+
+# set options for exercises and checking ---------------------------------------
+
+# tutorial options
+tutorial_options(
+  # code running in exercise times out after 30 seconds
+  exercise.timelimit = 30, 
+  # use gradethis for checking
+  exercise.checker = gradethis::grade_learnr
+  )
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<!-- Add JavaScript code for making the exercise code larger, css code is also used in the YAML -->
+<script language="JavaScript" src="js/font-size.js"></script>
+
+
+## Introduction to R and R Studio <a alt="NHS-R Community's logo" href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
+
+</br>
+</br>
+
+[Slides](https://nhs-r-community.github.io/intro_r/02-workshop_projects.html) for projects are a quick overview of how to start using projects in RStudio.
+
+### Learning goals
+
+Knowing where to find the short projects can be created and opened within RStudio.  
+
+## Default working directory
+
+Before going into detail about how to create projects or navigate them, we first need to see where the default working directory is. This is important because when you save a script, export data or a chart the file will be saved to a default location. 
+
+RStudio says where this is in a couple of locations. The first is at the top of the `Console` bar and it often says `~/` just after the version number for RStudio. 
+
+```{r working-directory-quiz}
+quiz(caption = "Guess",
+     question("Where do you think the folder is on the computer for `~/`?",
+              answer("Documents/My documents", correct = TRUE, message = "This may not be for every computer but for many it defaults to Documents/My documents"),
+              answer("RStudio folder in the Program Files on the C drive", message = "A reasonable assumption but file scripts and program files are separate"),
+              answer("Personal network drive", message = "A good guess but RStudio won't necessarily refer to network drives as not everyone who uses RStudio is on a network."),
+              allow_retry = TRUE,
+              random_answer_order = TRUE
+     )
+)
+```
+
+## Changing the default working directory
+
+To confirm the location of the default working directory go to `Tools/Global Options` and the first pane `General` will repeat the same `~` as can be seen in the `Console`. To check where this is and perhaps change the location select `Browse`.
+
+### Changing the project working directory
+
+We often use folders to save different projects/scripts and navigate between them by using `File Explorer` and so, having a global working directory could quickly become problematic as anything saved or exported from RStudio will go to `Documents`. To get around this many people use the code `setwd()` to set the working directory and, as Jenny Bryan write in [What They Forgot to Teach You About R](https://rstats.wtf/project-oriented-workflow.html) the code can often look like:
+
+`setwd("path/that/only/works/on/my/machine")`
+
+She warns that no one other than you will be able to run this code without needing to make changes and it's also likely to break for you if you move files around or rename some folders. 
+
+```{r projects-quiz}
+quiz(
+  question("R Projects can make the following easier for you:",
+    answer("Organise files and workflow", correct = TRUE),
+    answer("Switch between projects", correct = TRUE),
+    answer("Share scripts/projects with others", correct = TRUE),
+    answer("Choosing which packages to use", correct = FALSE),
+    incorrect = "Not all the correct uses were ticked. Have another go.",
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  )
+)
+```
+

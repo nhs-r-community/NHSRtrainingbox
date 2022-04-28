@@ -36,7 +36,7 @@ knitr::opts_chunk$set(echo = FALSE)
 <script language="JavaScript" src="js/font-size.js"></script>
 
 
-## Introducing the learning format  <a alt="NHS-R Community's logo" href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
+## Introducing the learning format <a alt="NHS-R Community's logo" href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
 
 </br>
 </br>

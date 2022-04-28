@@ -36,16 +36,16 @@ knitr::opts_chunk$set(echo = FALSE)
 <script language="JavaScript" src="js/font-size.js"></script>
 
 
-## Introduction to R and R Studio  <a alt="NHS-R Community's logo" href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
+## Introduction to R and R Studio <a alt="NHS-R Community's logo" href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
 
 </br>
 </br>
 
-[Slides](https://nhs-r-community.github.io/intro_r/01-workshop_intro.html#1) for the introduction course are referenced in this package for further information or to visualise RStudio with screenshots. The slides in the introduction session include links to various examples of how R is used, including Shiny apps, heat map visualisations and a Twitter dashboard. 
+[Slides](https://nhs-r-community.github.io/intro_r/01-workshop_intro.html) for the introduction course are referenced in this package for further information or to visualise RStudio with screenshots. The slides in the introduction session include links to various examples of how R is used, including Shiny apps, heat map visualisations and a Twitter dashboard. 
 
 ### Learning goals
 
-The goal of this section it to introduce some important features of RStudio and whilst there is a lot more that RStudio is capable of, there are often updated versions with new and useful features, the following should get you started. [Presentation slide 22](https://nhs-r-community.github.io/intro_r/01-workshop_intro.html#22) onwards in this section have screenshots to help locate parts of RStudio and links to other resources or sources. The following {learnr} section can be followed without the slides.
+The goal of this section is to introduce some important features of RStudio and whilst there is a lot more that RStudio is capable of, there are often updated versions with new and useful features, the following should get you started. [Presentation slide 22](https://nhs-r-community.github.io/intro_r/01-workshop_intro.html#22) onwards in this section have screenshots to help locate parts of RStudio and links to other resources or sources. The following {learnr} section can be followed without the slides.
 
 ## R and R Studio
 
@@ -127,7 +127,7 @@ median(1:10) +
 ```{r comment-check}
 
 grade_this({
-  if (identical(.result, mean(1:10))) {
+  if (identical(.result, .solution)) {
     pass("Great work! You commented out the median() code so only the mean() ran")
   }
   fail("Hint! You need to comment out the median() code so only the mean() runs")
@@ -377,7 +377,6 @@ library(dplyr)
 
 ```{r case-sensitivity-check}
 
-# grade_this_code()
 grade_this({
   if (identical(.result, .solution)) {
     pass("Great work! You removed all the uppercase letters from the package names")
