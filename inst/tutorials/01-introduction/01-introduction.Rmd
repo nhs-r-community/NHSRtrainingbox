@@ -1,5 +1,5 @@
 ---
-title: "NHS-R Community Introduction to R and R Studio"
+title: "Introduction"
 output:
   learnr::tutorial:
     progressive: true

@@ -1,5 +1,5 @@
 ---
-title: "NHS-R Community Introduction to R and R Studio"
+title: "Projects"
 output:
   learnr::tutorial:
     progressive: true
@@ -56,9 +56,13 @@ RStudio says where this is in a couple of locations. The first is at the top of 
 ```{r working-directory-quiz}
 quiz(caption = "Guess",
      question("Where do you think the folder is on the computer for `~/`?",
-              answer("Documents/My documents", correct = TRUE, message = "This may not be for every computer but for many it defaults to Documents/My documents"),
-              answer("RStudio folder in the Program Files on the C drive", message = "A reasonable assumption but file scripts and program files are separate"),
-              answer("Personal network drive", message = "A good guess but RStudio won't necessarily refer to network drives as not everyone who uses RStudio is on a network."),
+              answer("Documents/My documents", 
+                     correct = TRUE, 
+                     message = "This may not be for every computer but for many it defaults to Documents/My documents"),
+              answer("RStudio folder in the Program Files on the C drive", 
+                     message = "A reasonable assumption but file scripts and program files are separate"),
+              answer("Personal network drive", 
+                     message = "A good guess but RStudio won't necessarily refer to network drives as not everyone who uses RStudio is on a network."),
               allow_retry = TRUE,
               random_answer_order = TRUE
      )
