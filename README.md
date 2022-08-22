@@ -26,14 +26,17 @@ You can install the development version of NHSRtraining from
 remotes::install_github("nhs-r-community/NHSRtraining")
 ```
 
-Currently the [{parsons} package](https://github.com/rstudio/parsons) is
-not available on CRAN. This is used to create some of the interactivity
+Currently the [{parsons} package](https://github.com/rstudio/parsons)
+and [{gradethis}](https://github.com/rstudio/gradethis) are not
+available on CRAN. {parsons} is used to create some of the interactivity
 of the quiz questions where answers can me moved from one side to
 another into order. To load this:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("rstudio/parsons")
+
+remotes::install_github("rstudio/gradethis")
 ```
 
 ## Running the tutorials
@@ -49,6 +52,7 @@ learnr::available_tutorials("NHSRtraining")
 and running each tutorial:
 
 ``` r
+
 learnr::run_tutorial("list-tutorial-name", package = "NHSRtraining")
 ```
 
