@@ -1,0 +1,123 @@
+---
+title: "Importing data"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+css: "css/font-size.css"
+runtime: shiny_prerendered
+description: >
+  Section 03 Importing data
+---
+
+
+```{r setup, include=FALSE}
+# load packages-----------------------------------------------------------------
+
+library(learnr)
+library(tidyverse)
+library(parsons) 
+library(gradethis)
+
+# set options for exercises and checking ---------------------------------------
+
+# tutorial options
+tutorial_options(
+  # code running in exercise times out after 30 seconds
+  exercise.timelimit = 30, 
+  # use gradethis for checking
+  exercise.checker = gradethis::grade_learnr
+  )
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<!-- Add JavaScript code for making the exercise code larger, css code is also used in the YAML -->
+<script language="JavaScript" src="js/font-size.js"></script>
+
+
+## Introduction to R and R Studio <a alt="NHS-R Community's logo" href='https://nhsrcommunity.com/'><img src='https://nhs-r-community.github.io/assets/logo/nhsr-logo.png' align="right" height="80" /></a>
+
+</br>
+</br>
+
+[Slides](https://nhs-r-community.github.io/intro_r/03-workshop_import_data.html) for an overview of how to import csv data into RStudio using the in-built wizards.
+
+### Learning goals
+
+Importing csv files in to RStudio. 
+
+## Importing data
+
+RStudio has a short `Import Dataset` menu in the `Environment` pane for Text, Excel data. SPSS, SAS and Stata are also in the short menu and are statistical programs. Although there are only a few files listed it is possible to import a wide range of data and code scripts from other programs.
+
+Although they are not listed in this short menu, R has it's own data files that can be efficient for storing large amounts of data. The most common are .RData and .RDS files.
+
+The wizard is good to view the data before importing and can be used to make a few changes.
+
+```{r importing-quiz}
+quiz(caption = "Recap",
+     question("What data can be imported into RStudio?",
+              answer(".xls", correct = TRUE),
+              answer("csv", correct = TRUE),
+              answer(".RData", correct = TRUE, message = ".RData is a specific type of R data file, another is .RDS"),
+              answer(".doc", message = "Word documents don't really store data but their content can be opened as a text script in R."),
+              allow_retry = TRUE,
+              random_answer_order = TRUE,
+              incorrect = "Only one in the list isn't strictly speaking a data file so isn't imported"
+     )
+)
+```
+
+## Importing capacity_ae.csv
+
+The slides show how to access the wizard through RStudio `Import Dataset` button but files can also be imported by directly clicking on them in the `Files` pane. This opens the same wizard and doesn't require navigation to the file required.
+
+The slides detail how the code can be copied from the wizard to be saved in a script for future use.
+
+The code is 3 lines:
+
+```r 
+library(readr)
+capacity_ae <- read_csv("capacity_ae.csv")
+View(capacity_ae)
+```
+
+```{r import-1-quiz}
+quiz(caption = "Code breakdown",
+     question("The first line `library(readr)` means what?",
+              answer("Load this package", correct = TRUE),
+              answer("Import this package", message = "No, not import but the next step where you need to call the package to use it"),
+              answer("Ignore this package"), 
+              answer("It doesn't do anything"),
+              allow_retry = TRUE,
+              random_answer_order = TRUE
+     )
+)
+```
+
+```{r import-2-quiz}
+quiz(caption = "Code breakdown",
+     question("The second line `capacity_ae <- read_csv('capacity_ae.csv')` does what?",
+              answer("Imports the data to an object called `capacity_ae`", correct = TRUE),
+              answer("Reads the data", message = "Close, `read_csv('capacity_ae.csv')` does indeed read the data but what about `capacity_ae <-`?"),
+              answer("Saves the csv file", message = "It is possible to save data to a csv file but this the code to do that"), 
+              allow_retry = TRUE,
+              random_answer_order = TRUE
+     )
+)
+```
+
+
+```{r import-3-quiz}
+quiz(caption = "Code breakdown",
+     question("The third line `View(capacity_ae)` does what?",
+              answer("Opens the data to view as a tab", correct = TRUE),
+              answer("Shows the data in the console", message = "Close, to do this the code is just `capacity_ae` without View()"),
+              answer("Nothing"),
+              answer("It creates and object"),
+              allow_retry = TRUE,
+              random_answer_order = TRUE
+     )
+)
+```
